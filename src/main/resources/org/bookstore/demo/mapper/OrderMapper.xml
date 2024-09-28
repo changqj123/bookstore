@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bookstore.demo.mapper.OrderMapper">
+    <resultMap id="oMap" type="org.bookstore.demo.entity.Order">
+        <id column="order_id" property="orderId" javaType="java.lang.Long"/>
+        <result column="order_time" property="orderTime" javaType="java.util.Date"/>
+        <result column="order_price" property="orderPrice" javaType="java.lang.Double"/>
+        <result column="order_state" property="orderState" javaType="java.lang.String"/>
+        <result column="user" property="user" javaType="java.lang.String"/>
+        <result column="order_items" property="orderItems" javaType="java.lang.String"/>
+    </resultMap>
+
+    <insert id="addOrder" parameterType="org.bookstore.demo.entity.Order">
+        insert into orders values(#{orderId}, CURRENT_TIMESTAMP, #{orderPrice}, #{orderState}, #{user}, #{orderItems})
+    </insert>
+
+    <update id="updateOrder">
+        update orders set order_state=#{orderState} where order_id=#{orderId}
+    </update>
+
+    <select id="selectOrderState" parameterType="java.lang.Long" resultMap="oMap">
+        select * from orders where order_id=#{orderId}
+    </select>
+</mapper>

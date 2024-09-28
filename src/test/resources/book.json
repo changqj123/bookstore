@@ -1,0 +1,9 @@
+{
+  "categoryId": "computer",
+  "bookId": 1,
+  "bookName": "java",
+  "author": "Jack",
+  "publishHouse": "house01",
+  "description": "good book to learn java",
+  "price": 36.0
+}

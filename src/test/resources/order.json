@@ -1,0 +1,7 @@
+{
+  "orderId": 2,
+  "orderPrice": 72.0,
+  "orderState": "submmited",
+  "user": "{\"userId\": 666, \"userName\": \"test666\", \"password\": \"666\", \"phoneNum\": \"12345678901\", \"email\": \"123@test.com\"}",
+  "orderItems": "[{\"itemId\": 1,\"book\": {\"categoryId\": \"computer\",\"bookId\": 1,\"bookName\": \"java\",\"author\": \"Jack\",\"publishHouse\": \"house01\",\"description\": \"good book to learn java\",\"price\": 36.0},\"itemQuantity\": 2,\"itemPrice\": 72.0}]"
+}

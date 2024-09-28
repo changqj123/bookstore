@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bookstore.demo.mapper.InventoryMapper">
+    <resultMap id="iMap" type="org.bookstore.demo.entity.BookItem">
+        <id column="book_id" property="bookId" javaType="java.lang.Long"/>
+        <result column="book_name" property="bookName" javaType="java.lang.String"/>
+        <result column="book_stock" property="bookStock" javaType="java.lang.Long"/>
+    </resultMap>
+
+    <update id="increaseInventory">
+        update inventory set book_stock= book_stock + #{num} where book_id=#{bookId}
+    </update>
+
+    <update id="decreaseInventory">
+        update inventory set book_stock= book_stock - #{num} where book_id=#{bookId}
+    </update>
+
+    <select id="selectInventoryById" parameterType="java.lang.Long" resultMap="iMap">
+        select * from inventory where book_id=#{bookId}
+    </select>
+
+    <select id="addBookItem" resultType="org.bookstore.demo.entity.BookItem">
+        insert into inventory values(#{bookId},#{bookName},#{bookStock})
+    </select>
+
+    <select id="deleteBookItem" parameterType="java.lang.Long">
+        delete from inventory where book_id=#{bookId}
+    </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bookstore.demo.mapper.UserMapper">
+    <resultMap id="uMap" type="org.bookstore.demo.entity.User">
+        <id column="user_id" property="userId" javaType="java.lang.Long"/>
+        <result column="user_name" property="userName" javaType="java.lang.String"/>
+        <result column="password" property="password" javaType="java.lang.String"/>
+        <result column="phone_num" property="phoneNum" javaType="java.lang.String"/>
+        <result column="email" property="email" javaType="java.lang.String"/>
+    </resultMap>
+
+    <select id="selectUserById" resultMap="uMap">
+        SELECT * FROM users WHERE user_id = #{userId}
+    </select>
+
+    <select id="selectUserByName" resultMap="uMap">
+        SELECT * FROM users WHERE user_name = #{userName}
+    </select>
+
+    <select id="selectUser" resultMap="uMap">
+        SELECT * FROM users WHERE password = #{password} AND user_name = #{userName}
+    </select>
+
+    <insert id="addUser" parameterType="org.bookstore.demo.entity.User">
+        INSERT INTO users VALUES (#{userId}, #{userName}, #{password}, #{phoneNum}, #{email})
+    </insert>
+
+
+</mapper>

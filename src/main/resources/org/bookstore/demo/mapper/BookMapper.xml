@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bookstore.demo.mapper.BookMapper">
+    <resultMap id="bMap" type="org.bookstore.demo.entity.Book">
+        <id column="book_id" property="bookId" javaType="java.lang.Long"/>
+        <result column="category_id" property="categoryId" javaType="java.lang.String"/>
+        <result column="book_name" property="bookName" javaType="java.lang.String"/>
+        <result column="author" property="author" javaType="java.lang.String"/>
+        <result column="publish_house" property="publishHouse" javaType="java.lang.String"/>
+        <result column="description" property="description" javaType="java.lang.String"/>
+        <result column="price" property="price" javaType="java.lang.Double"/>
+    </resultMap>
+
+    <insert id="addBook" parameterType="org.bookstore.demo.entity.Book">
+        INSERT INTO books VALUES (#{categoryId}, #{bookId}, #{bookName}, #{author}, #{publishHouse}, #{description},
+        #{price})
+    </insert>
+
+    <delete id="deleteBookById" parameterType="java.lang.Long">
+        delete from books where book_id = #{bookId}
+    </delete>
+
+    <update id="updateBook" parameterType="org.bookstore.demo.entity.Book">
+        update books set category_id=#{categoryId}, book_id=#{bookId}, book_name=#{bookName}, author=#{author},
+        publish_house=#{publishHouse}, description=#{description}, price=#{price} where
+        book_id = #{bookId}
+    </update>
+
+    <select id="selectBookById" parameterType="java.lang.Long" resultMap="bMap">
+        select * from books where book_id=#{bookId}
+    </select>
+
+    <select id="selectBookByName" parameterType="java.lang.String" resultMap="bMap">
+        select * from books where book_name=#{bookName}
+    </select>
+
+    <select id="selectAllBooks" resultMap="bMap">
+        select * from books
+    </select>
+</mapper>
